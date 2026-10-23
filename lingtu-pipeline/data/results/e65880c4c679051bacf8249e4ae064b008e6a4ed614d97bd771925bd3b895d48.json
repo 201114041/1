@@ -1,0 +1,7 @@
+{
+  "step": "validate_asset",
+  "label": "校验动画素材",
+  "attempt": 1,
+  "mock_artifact": "validate_asset-de5ad02b.bin",
+  "finished_at": "2026-10-23T06:30:53.049+00:00"
+}

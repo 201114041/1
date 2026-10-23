@@ -1,0 +1,7 @@
+{
+  "step": "ai_style_transfer",
+  "label": "AI 风格迁移（Mock）",
+  "attempt": 1,
+  "mock_artifact": "ai_style_transfer-8d9ae89a.bin",
+  "finished_at": "2026-10-23T06:31:24.169+00:00"
+}

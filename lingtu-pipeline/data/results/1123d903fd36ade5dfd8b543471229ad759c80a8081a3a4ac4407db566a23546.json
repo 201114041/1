@@ -1,0 +1,7 @@
+{
+  "step": "extract_frames",
+  "label": "抽取关键帧",
+  "attempt": 2,
+  "mock_artifact": "extract_frames-510a0003.bin",
+  "finished_at": "2026-10-23T06:31:14.125+00:00"
+}

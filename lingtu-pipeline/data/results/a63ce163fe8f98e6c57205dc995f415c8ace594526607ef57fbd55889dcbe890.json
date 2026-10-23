@@ -1,0 +1,7 @@
+{
+  "step": "compose_preview",
+  "label": "合成预览结果",
+  "attempt": 1,
+  "mock_artifact": "compose_preview-d700304e.bin",
+  "finished_at": "2026-10-23T06:20:39.079+00:00"
+}

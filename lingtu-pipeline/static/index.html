@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>灵图 AI 任务管线 MVP</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">LT</span>
+      <div>
+        <strong>AI 任务管线</strong>
+        <span>可观测 · 可恢复 · 可复用</span>
+      </div>
+    </div>
+    <div class="health-pill"><span class="pulse"></span><span id="healthText">服务运行中</span></div>
+  </header>
+
+  <main class="layout">
+    <section class="left-column">
+      <div class="hero">
+        <p class="eyebrow">TASK PIPELINE / MVP</p>
+        <h1>让耗时 AI 任务的每一步都<br><em>看得见、接得上。</em></h1>
+        <p class="hero-copy">Mock 动画素材处理管线，演示步骤级重试、进程中断恢复与结果缓存复用。</p>
+      </div>
+
+      <form id="createForm" class="panel create-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">NEW TASK</p>
+            <h2>提交处理任务</h2>
+          </div>
+          <button type="button" id="failurePreset" class="text-button">填入失败演示</button>
+        </div>
+
+        <label class="field">
+          <span>任务名称</span>
+          <input id="title" name="title" maxlength="80" value="新番 PV 素材处理" autocomplete="off">
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span>单步耗时</span>
+            <select id="stepDelay">
+              <option value="300">300 ms · 快速演示</option>
+              <option value="800" selected>800 ms · 正常观察</option>
+              <option value="10000">10 s · 中断恢复演示</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>注入失败</span>
+            <select id="failStep">
+              <option value="">不注入失败</option>
+              <option value="validate_asset">素材校验</option>
+              <option value="extract_frames">关键帧抽取</option>
+              <option value="ai_style_transfer">AI 风格迁移</option>
+              <option value="compose_preview">预览合成</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="field-row compact">
+          <label class="field">
+            <span>失败次数</span>
+            <select id="failTimes">
+              <option value="0">0 次</option>
+              <option value="1" selected>1 次后自动重试</option>
+              <option value="2">2 次后自动重试</option>
+              <option value="3">3 次后失败</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>素材标识</span>
+            <input id="assetName" value="demo_anime_pv.mp4" maxlength="120" autocomplete="off">
+          </label>
+        </div>
+
+        <p class="demo-hint"><strong>进程中断演示：</strong>选择 10 s，启动后在另一个终端停止服务，再重新运行即可看到恢复历史。</p>
+
+        <button type="submit" id="createButton" class="primary-button">
+          <span>启动 Mock 管线</span><span aria-hidden="true">→</span>
+        </button>
+      </form>
+
+      <section class="panel task-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">TASK LIST</p>
+            <h2>执行记录</h2>
+          </div>
+          <span id="taskCount" class="count">0 个任务</span>
+        </div>
+        <div id="taskList" class="task-list">
+          <div class="empty-state">还没有任务，先启动一个 Mock 管线。</div>
+        </div>
+      </section>
+    </section>
+
+    <section class="right-column">
+      <div id="detail" class="detail-card">
+        <div class="detail-empty">
+          <div class="orbit"><span></span><span></span><span></span></div>
+          <h2>选择一个任务</h2>
+          <p>查看任务总状态、步骤依赖、重试历史和持久化结果。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
